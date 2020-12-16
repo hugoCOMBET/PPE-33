@@ -37,7 +37,7 @@ namespace PPE3_SLAM_HUGO
             if (Rbtn_AffichageTransactions.IsChecked == true)
             {
                 FenetreTransactions Transaction = new FenetreTransactions(mytransaction,myclient);
-                Transaction.Show();
+                Transaction.Show(); 
                 this.Close();
             }
             if (Rbtn_gérerClient.IsChecked == true)
