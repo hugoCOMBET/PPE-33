@@ -24,8 +24,10 @@ namespace PPE3_SLAM_HUGO
         private DAOclients myclient;
         public FenetreTransactions(DAOtransactions laTransaction, DAOclients lesClient)
         {
-            laTransaction = mytransaction;
-            lesClient = myclient;
+            mytransaction = laTransaction;
+            myclient = lesClient;
+            //laTransaction = mytransaction;
+            //lesClient = myclient;
             InitializeComponent();
         }
 

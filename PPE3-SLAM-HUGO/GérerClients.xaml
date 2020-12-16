@@ -10,7 +10,7 @@
 
     <Grid x:Name="GererClient" Background="#FFE8E8E8">
         <Label x:Name="lbl_listeClient" Content="Liste des clients :" HorizontalAlignment="Left" Margin="10,90,0,0" VerticalAlignment="Top" Width="322" FontStyle="Italic"/>
-        <ListBox x:Name="lst_clients" ItemsSource="{Binding ListClient}" IsSynchronizedWithCurrentItem="True" HorizontalAlignment="Left" Height="288" Margin="10,121,0,0" VerticalAlignment="Top" Width="250"/>
+        <ListBox x:Name="lst_clients" ItemsSource="{Binding ListClient}" SelectedItem="{Binding Selectedclient}" IsSynchronizedWithCurrentItem="True" HorizontalAlignment="Left" Height="288" Margin="10,121,0,0" VerticalAlignment="Top" Width="250" />
         <Grid x:Name="displayClients" Margin="332,36,10,0" RenderTransformOrigin="0.523,0.493">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="31*"/>
@@ -29,7 +29,7 @@
 
             </Grid.RowDefinitions>
             <Label Content="Nom &#xA;" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,14,0,6" Background="White" FontSize="14" Height="28" Width="130" Grid.ColumnSpan="2"/>
-            <TextBox x:Name="txtbox_nom" Text="{Binding Nom}" Grid.Row="0" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,14,10,16" Height="18"/>
+            <TextBox x:Name="txtbox_nom" Text="{Binding Nom}" Grid.Row="0" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10.333,20,9.333,10" Height="18"/>
             <Label Content="Prénom"  Grid.Row="1" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,14,0,6" Background="White" FontSize="14" Height="28" Width="130" Grid.ColumnSpan="2"/>
             <Label Content="DateNaissance" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,14,0,6" Background="White" FontSize="14" Width="130" Height="30" Grid.ColumnSpan="2"/>
             <DatePicker x:Name="Calendrier_DateNaiss" SelectedDate="{Binding DateNaisssance}" Grid.Row="2" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,13,10,11" Height="24"/>

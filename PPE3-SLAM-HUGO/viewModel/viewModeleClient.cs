@@ -14,76 +14,34 @@ namespace PPE3_SLAM_HUGO.viewModel
     class viewModeleClient : viewModelBase
     {
         private DAOclients vmDaoClients;
-        private DAOtransactions vmDaoTransaction;
+        
 
 
-        private Transactions selectedTransaction = new Transactions();
+        
         private Clients selectedClient = new Clients();
 
-        private ObservableCollection<Transactions> listTransactions;
         private ObservableCollection<Clients> listClient;
 
         public ObservableCollection<Clients> ListClient { get => listClient; set => listClient = value; }
-        public ObservableCollection<Transactions> ListTransactions { get => listTransactions; set => listTransactions = value; }
 
-        //private ICommand updateCommand;
-        //private ICommand supprimerCommand;
-        //private ICommand ajouterCommand;
+        private ICommand updateCommand;
+        private ICommand supprimerCommand;
+        private ICommand ajouterCommand;
 
-        public viewModeleClient(DAOtransactions thedaoTransaction, DAOclients thedaoClient)
+        public viewModeleClient(DAOclients thedaoClient)
         {
             vmDaoClients = thedaoClient;
-            vmDaoTransaction = thedaoTransaction;
+            
             listClient = new ObservableCollection<Clients>(thedaoClient.SelectAll());
         }
 
-        public Clients SelectedClient
-        {
-            get => selectedClient;
-            set
-            {
-                if (selectedClient != value)
-                {
-                    selectedClient = value;
-                    OnPropertyChanged("id");
-                    OnPropertyChanged("nom");
-                    OnPropertyChanged("prenom");
-                    OnPropertyChanged("photo");
-                    OnPropertyChanged("DateNaissance");
-                    OnPropertyChanged("Email");
-                    OnPropertyChanged("TelephonePortable");
-
-                }
-            }
-        }
-        public string Nom
-        {
-            get
-            {
-                if (selectedClient!= null)
-                {
-                    return selectedClient.getNomClient();
-                }
-                else
-                {
-                    return null;
-                }
-            }
-            set
-            {
-                if (selectedClient.getNomClient() != value)
-                {
-                    selectedClient.setNomClient(value);
-                    //création d'un évènement si la propriété Name (bindée dans le XAML) change
-                    OnPropertyChanged("Nom");
-                }
-            }
-        }
+       
+       
         public string Prenom
         {
             get
             {
-                if (selectedClient != null)
+                if (selectedClient.getPrenomClient() != null)
                 {
                     return selectedClient.getPrenomClient();
                 }
@@ -91,17 +49,18 @@ namespace PPE3_SLAM_HUGO.viewModel
                 {
                     return null;
                 }
+
             }
             set
             {
                 if (selectedClient.getPrenomClient() != value)
                 {
                     selectedClient.setPrenomClient(value);
-                    //création d'un évènement si la propriété Name (bindée dans le XAML) change
                     OnPropertyChanged("Prenom");
                 }
             }
         }
+    
         public DateTime DateNaissance
         {
             get
@@ -190,7 +149,7 @@ namespace PPE3_SLAM_HUGO.viewModel
                 {
                     selectedClient.setAdresseClient(value);
                     //création d'un évènement si la propriété Name (bindée dans le XAML) change
-                    OnPropertyChanged("Adresse");
+                    OnPropertyChanged("Adresse");  
                 }
             }
         }
@@ -218,46 +177,76 @@ namespace PPE3_SLAM_HUGO.viewModel
             }
         }
 
-
-        public Transactions SelectedTransaction
+        public string Nom
         {
-            get => selectedTransaction;
+            get
+            {
+                if (selectedClient != null)
+                {
+                    return selectedClient.Nom;
+                }
+                else
+                {
+                    return null;
+                }
+            }
             set
             {
-                if (selectedTransaction != value)
+                if (selectedClient.Nom != value)
                 {
-                    selectedTransaction = value;
-                    OnPropertyChanged("id");
-                    OnPropertyChanged("idClient");
-                    OnPropertyChanged("MontantTransaction");
+                    selectedClient.Nom = value;
+                    //création d'un évènement si la propriété Name (bindée dans le XAML) change
+                    OnPropertyChanged("Nom");
+                }
+            }
+        }
+        public Clients Selectedclient
+        {
+            get => selectedClient;
+            set
+            {
+                if (selectedClient != value)
+                {
+                    selectedClient = value;
+
+                    OnPropertyChanged("Nom");
+                    OnPropertyChanged("Prenom");
+                    OnPropertyChanged("DateNaissance");
+                    OnPropertyChanged("Email");
+                    OnPropertyChanged("NumTel");
+                    OnPropertyChanged("Adresse");
+                    OnPropertyChanged("Adresse");
+                    OnPropertyChanged("Credit");
                 }
             }
         }
 
-        //private void UpdateCommand()
-        //{
-        //    Clients backup = new Clients();
-        //    backup = SelectedClient;
-        //    this.vmDaoClients.Update(this.SelectedClient);
-        //    int a = listClient.IndexOf(SelectedClient);
-        //    listClient.Insert(a, SelectedClient);
-        //    listClient.RemoveAt(a + 1);
-        //    SelectedClient = backup;
-        //    MessageBox.Show("Mis à jour réussis");
-        //}
-        //public ICommand UpdateClient
-        //{
-        //    get
-        //    {
-        //        if (this.updateCommand == null)
-        //        {
-        //            this.updateCommand = new RelayCommand(() => UpdateCommand(), () => true);
-        //        }
-        //        return this.updateCommand;
-        //    }
-        //}
-
-
         
+
+        private void UpdateCommand()
+        {
+            Clients backup = new Clients();
+            backup = selectedClient;
+            this.vmDaoClients.Update(this.selectedClient);
+            int a = listClient.IndexOf(selectedClient);
+            listClient.Insert(a, selectedClient);
+            listClient.RemoveAt(a + 1);
+            selectedClient = backup;
+            MessageBox.Show("Mis à jour réussis");
+        }
+        public ICommand UpdateClient
+        {
+            get
+            {
+                if (this.updateCommand == null)
+                {
+                    this.updateCommand = new RelayCommand(() => UpdateCommand(), () => true);
+                }
+                return this.updateCommand;
+            }
+        }
+
+
+
     }
 }

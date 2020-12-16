@@ -23,12 +23,12 @@ namespace PPE3_SLAM_HUGO
     {
         private DAOtransactions mytransaction;
         private DAOclients myclient;
-        public MainWindow( DAOtransactions laTransaction,DAOclients lesClient)
+        public MainWindow(DAOclients lesClient)
         {
             myclient = lesClient;
-            mytransaction = laTransaction;
+            
             InitializeComponent();
-            AppComptableSecretariat.DataContext = new viewModel.viewModeleClient(laTransaction, lesClient);
+            AppComptableSecretariat.DataContext = new viewModel.viewModeleClient(lesClient);
             
         }
 

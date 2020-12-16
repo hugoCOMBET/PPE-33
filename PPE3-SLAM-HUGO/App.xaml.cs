@@ -32,7 +32,7 @@ namespace PPE3_SLAM_HUGO
 
             // Create the startup window
             //là, on lance la fenêtre souhaitée en instanciant la classe de notre fenêtre
-            MainWindow wnd = new MainWindow(thedaoTransaction, thedaoClient);
+            MainWindow wnd = new MainWindow(thedaoClient);
             //et on utilise la méthode Show() de notre objet fenêtre pour afficher la fenêtre
             //exemple: MainWindow lafenetre = new MainWindow(); (et on y passe en paramètre Dbal et Dao au besoin)
             wnd.Show();

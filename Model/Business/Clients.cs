@@ -19,6 +19,16 @@ namespace Model.Business
         private string _TelephonePortable;
         private double _credit;
 
+        public int Id { get => _id; set => _id = value; }
+        public string Nom { get => _nom; set => _nom = value; }
+        public string Prenom { get => _prenom; set => _prenom = value; }
+        public string Photo { get => _photo; set => _photo = value; }
+        public string Adresse { get => _adresse; set => _adresse = value; }
+        public DateTime DateNaissance { get => _DateNaissance; set => _DateNaissance = value; }
+        public string Email { get => _Email; set => _Email = value; }
+        public string TelephonePortable { get => _TelephonePortable; set => _TelephonePortable = value; }
+        public double Credit { get => _credit; set => _credit = value; }
+
 
         #endregion
 
@@ -131,5 +141,12 @@ namespace Model.Business
             _credit = uncredit;
         }
         #endregion
+
+
+
+        public override string ToString()
+        {
+            return this.getNomClient() + "  " + this.getPrenomClient();
+        }
     }
 }

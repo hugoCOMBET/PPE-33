@@ -26,10 +26,12 @@ namespace PPE3_SLAM_HUGO
         private DAOclients myclient;
         public GérerClients(DAOclients mydaoClient, DAOtransactions mydaoTransaction)
         {
-            mydaoClient = myclient;
-            mydaoTransaction = mytransaction;
+            //mydaoClient = myclient;
+            //mydaoTransaction = mytransaction;
+            mytransaction = mydaoTransaction;
+            myclient = mydaoClient;
             InitializeComponent();
-            GererClient.DataContext = new viewModel.viewModeleClient(mydaoTransaction, mydaoClient);
+            GererClient.DataContext = new viewModel.viewModeleClient(mydaoClient);
         }
 
         private void btn_gérerClient_Click(object sender, RoutedEventArgs e)
@@ -45,5 +47,7 @@ namespace PPE3_SLAM_HUGO
             Transaction.Show();
             this.Close();
         }
+
+       
     }
 }
