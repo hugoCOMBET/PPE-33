@@ -8,7 +8,7 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="GérerClients" Height="450" Width="800">
 
-    <Grid Background="#FFE8E8E8">
+    <Grid x:Name="GererClient" Background="#FFE8E8E8">
         <Label x:Name="lbl_listeClient" Content="Liste des clients :" HorizontalAlignment="Left" Margin="10,90,0,0" VerticalAlignment="Top" Width="322" FontStyle="Italic"/>
         <ListBox x:Name="lst_clients" ItemsSource="{Binding ListClient}" IsSynchronizedWithCurrentItem="True" HorizontalAlignment="Left" Height="288" Margin="10,121,0,0" VerticalAlignment="Top" Width="250"/>
         <Grid x:Name="displayClients" Margin="332,36,10,0" RenderTransformOrigin="0.523,0.493">

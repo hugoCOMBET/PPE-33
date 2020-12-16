@@ -21,21 +21,26 @@ namespace PPE3_SLAM_HUGO
     /// </summary>
     public partial class GérerCréditClient : Window
     {
-        public GérerCréditClient()
+        private DAOtransactions mytransaction;
+        private DAOclients myclient;
+        public GérerCréditClient(DAOclients mydaoClient, DAOtransactions mydaoTransaction)
         {
+            mydaoTransaction = mytransaction;
+            mydaoClient = myclient;
             InitializeComponent();
+            GererCreditClient.DataContext = new viewModel.viewModeleClient(mydaoTransaction, mydaoClient);
         }
 
         private void btn_afficherTrans_Click(object sender, RoutedEventArgs e)
         {
-            FenetreTransactions Transaction = new FenetreTransactions();
+            FenetreTransactions Transaction = new FenetreTransactions(mytransaction,myclient);
             Transaction.Show();
             this.Close();
         }
 
         private void btn_gérerClient_Click(object sender, RoutedEventArgs e)
         {
-            GérerClients gererClient = new GérerClients();
+            GérerClients gererClient = new GérerClients(myclient,mytransaction);
             gererClient.Show();
             this.Close();
         }

@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Model.Data;
+using Model.Business;
 
 namespace PPE3_SLAM_HUGO
 {
@@ -20,22 +22,26 @@ namespace PPE3_SLAM_HUGO
     /// </summary>
     public partial class GérerClients : Window
     {
-        public GérerClients()
+        private DAOtransactions mytransaction;
+        private DAOclients myclient;
+        public GérerClients(DAOclients mydaoClient, DAOtransactions mydaoTransaction)
         {
+            mydaoClient = myclient;
+            mydaoTransaction = mytransaction;
             InitializeComponent();
-            mainGrid.DataContext = new viewModel.viewModelFromage(thedaopays, thedaofromage);
+            GererClient.DataContext = new viewModel.viewModeleClient(mydaoTransaction, mydaoClient);
         }
 
         private void btn_gérerClient_Click(object sender, RoutedEventArgs e)
         {
-            GérerCréditClient gererCreditClient = new GérerCréditClient();
+            GérerCréditClient gererCreditClient = new GérerCréditClient(myclient,mytransaction);
             gererCreditClient.Show();
             this.Close();
         }
 
         private void btn_afficherTrans_Click(object sender, RoutedEventArgs e)
         {
-            FenetreTransactions Transaction = new FenetreTransactions();
+            FenetreTransactions Transaction = new FenetreTransactions(mytransaction, myclient);
             Transaction.Show();
             this.Close();
         }

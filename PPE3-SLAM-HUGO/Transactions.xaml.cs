@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Model.Data;
 
 namespace PPE3_SLAM_HUGO
 {
@@ -19,21 +20,25 @@ namespace PPE3_SLAM_HUGO
     /// </summary>
     public partial class FenetreTransactions : Window
     {
-        public FenetreTransactions()
+        private DAOtransactions mytransaction;
+        private DAOclients myclient;
+        public FenetreTransactions(DAOtransactions laTransaction, DAOclients lesClient)
         {
+            laTransaction = mytransaction;
+            lesClient = myclient;
             InitializeComponent();
         }
 
         private void btn_GérerlesCrédits_Click(object sender, RoutedEventArgs e)
         {
-            GérerCréditClient gererCreditClient = new GérerCréditClient();
+            GérerCréditClient gererCreditClient = new GérerCréditClient(myclient,mytransaction);
             gererCreditClient.Show();
             this.Close();
         }
 
         private void btn_gérerClient_Click(object sender, RoutedEventArgs e)
         {
-            GérerClients gererClient = new GérerClients();
+            GérerClients gererClient = new GérerClients(myclient,mytransaction);
             gererClient.Show();
             this.Close();
         }
