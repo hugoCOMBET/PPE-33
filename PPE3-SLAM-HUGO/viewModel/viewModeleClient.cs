@@ -14,6 +14,8 @@ namespace PPE3_SLAM_HUGO.viewModel
     class viewModeleClient : viewModelBase
     {
         private DAOclients vmDaoClients;
+        private DAOtransactions vmDaoTransaction;
+
 
         private Transactions selectedTransaction = new Transactions();
         private Clients selectedClient = new Clients();
@@ -24,13 +26,14 @@ namespace PPE3_SLAM_HUGO.viewModel
         public ObservableCollection<Clients> ListClient { get => listClient; set => listClient = value; }
         public ObservableCollection<Transactions> ListTransactions { get => listTransactions; set => listTransactions = value; }
 
-        private ICommand updateCommand;
-        private ICommand supprimerCommand;
-        private ICommand ajouterCommand;
+        //private ICommand updateCommand;
+        //private ICommand supprimerCommand;
+        //private ICommand ajouterCommand;
 
         public viewModeleClient(DAOtransactions thedaoTransaction, DAOclients thedaoClient)
         {
             vmDaoClients = thedaoClient;
+            vmDaoTransaction = thedaoTransaction;
             listClient = new ObservableCollection<Clients>(thedaoClient.SelectAll());
         }
 
@@ -55,7 +58,17 @@ namespace PPE3_SLAM_HUGO.viewModel
         }
         public string Nom
         {
-            get => SelectedClient.getNomClient();
+            get
+            {
+                if (selectedClient!= null)
+                {
+                    return selectedClient.getNomClient();
+                }
+                else
+                {
+                    return null;
+                }
+            }
             set
             {
                 if (selectedClient.getNomClient() != value)
@@ -68,7 +81,17 @@ namespace PPE3_SLAM_HUGO.viewModel
         }
         public string Prenom
         {
-            get => SelectedClient.getPrenomClient();
+            get
+            {
+                if (selectedClient != null)
+                {
+                    return selectedClient.getPrenomClient();
+                }
+                else
+                {
+                    return null;
+                }
+            }
             set
             {
                 if (selectedClient.getPrenomClient() != value)
@@ -81,7 +104,17 @@ namespace PPE3_SLAM_HUGO.viewModel
         }
         public DateTime DateNaissance
         {
-            get => SelectedClient.getDateNaissanceClient();
+            get
+            {
+                if (selectedClient != null)
+                {
+                    return selectedClient.getDateNaissanceClient();
+                }
+                else
+                {
+                    return new DateTime();
+                }
+            }
             set
             {
                 if (selectedClient.getDateNaissanceClient() != value)
@@ -94,7 +127,17 @@ namespace PPE3_SLAM_HUGO.viewModel
         }
         public string Email
         {
-            get => SelectedClient.getEmailClient();
+            get
+            {
+                if (selectedClient != null)
+                {
+                    return selectedClient.getEmailClient();
+                }
+                else
+                {
+                    return null;
+                }
+            }
             set
             {
                 if (selectedClient.getEmailClient() != value)
@@ -107,7 +150,17 @@ namespace PPE3_SLAM_HUGO.viewModel
         }
         public string NumTel
         {
-            get => SelectedClient.getTelPortableCLient();
+            get
+            {
+                if (selectedClient != null)
+                {
+                    return selectedClient.getTelPortableCLient();
+                }
+                else
+                {
+                    return null;
+                }
+            }
             set
             {
                 if (selectedClient.getTelPortableCLient() != value)
@@ -120,7 +173,17 @@ namespace PPE3_SLAM_HUGO.viewModel
         }
         public string Adresse
         {
-            get => SelectedClient.getAdresseClient();
+            get
+            {
+                if (selectedClient != null)
+                {
+                    return selectedClient.getAdresseClient();
+                }
+                else
+                {
+                    return null;
+                }
+            }
             set
             {
                 if (selectedClient.getAdresseClient() != value)
@@ -133,7 +196,17 @@ namespace PPE3_SLAM_HUGO.viewModel
         }
         public double Credit
         {
-            get => SelectedClient.getCreditClient();
+            get
+            {
+                if (selectedClient != null)
+                {
+                    return selectedClient.getCreditClient();
+                }
+                else
+                {
+                    return 0;
+                }
+            }
             set
             {
                 if (selectedClient.getCreditClient() != value)

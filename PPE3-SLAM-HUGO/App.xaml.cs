@@ -36,7 +36,6 @@ namespace PPE3_SLAM_HUGO
             //et on utilise la méthode Show() de notre objet fenêtre pour afficher la fenêtre
             //exemple: MainWindow lafenetre = new MainWindow(); (et on y passe en paramètre Dbal et Dao au besoin)
             wnd.Show();
-
         }
 
         //Méthode permettant d'afficher les exceptions non gérées (voir wpftutorial.com)
