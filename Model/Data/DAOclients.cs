@@ -45,7 +45,7 @@ namespace Model.Data
                 + ", DateNaissance ='" + unClient.DateNaissance.ToString("yyyy-MM-dd") + "'"
                 + ", Email = '" + unClient.Email.Replace("'", "''") + "'"
                 + ", TelephonePortable = '" + unClient.TelephonePortable.Replace("'", "''") + "'"
-                + ", Credit = " + unClient.Credit
+                + ", Credit = '" + unClient.Credit
                 + "' WHERE id = " + unClient.Id + " ;";
             this._dbal.Update(query);
         }

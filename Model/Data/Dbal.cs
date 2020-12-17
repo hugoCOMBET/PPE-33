@@ -99,7 +99,7 @@ namespace Model.Data
         }
         public void Update(string query)
         {
-            string query2 = "UPDATE " + query + ";";
+            string query2 = "UPDATE " + query ;
             Console.WriteLine(query2);
             //Open connection
             if (this.OpenConnection() == true)

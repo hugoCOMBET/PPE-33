@@ -41,7 +41,7 @@ namespace PPE3_SLAM_HUGO.viewModel
         {
             get
             {
-                if (selectedClient.getPrenomClient() != null)
+                if (selectedClient != null)
                 {
                     return selectedClient.getPrenomClient();
                 }
@@ -225,13 +225,16 @@ namespace PPE3_SLAM_HUGO.viewModel
 
         private void UpdateCommand()
         {
-            Clients backup = new Clients();
-            backup = selectedClient;
-            this.vmDaoClients.Update(this.selectedClient);
-            int a = listClient.IndexOf(selectedClient);
-            listClient.Insert(a, selectedClient);
-            listClient.RemoveAt(a + 1);
-            selectedClient = backup;
+            vmDaoClients.Update(selectedClient);
+            RefreshListClient();
+            //Clients backup = new Clients();
+            //backup = selectedClient;
+            //this.vmDaoClients.Update(this.selectedClient);
+            //RefreshListClient();
+            //int a = listClient.IndexOf(selectedClient);
+            //listClient.Add(selectedClient);
+            //listClient.RemoveAt(a + 1);
+            //selectedClient = backup;
             MessageBox.Show("Mis à jour réussis");
         }
         public ICommand UpdateClient
@@ -246,7 +249,48 @@ namespace PPE3_SLAM_HUGO.viewModel
             }
         }
 
+        private void AjouterCommand()
+        {
+            foreach (Clients C in listClient)
+            {
+                int id = C.Id + 1;
+                selectedClient.Id = id;
+            }
+            this.vmDaoClients.Insert(this.Selectedclient);
+            RefreshListClient();
+            listClient.Add(this.selectedClient);
+            MessageBox.Show("ajout réussie");
+
+            //Clients select = new Clients();
+            //this.vmDaoClients.Insert(this.selectedClient);
+            //listClient.Add(this.selectedClient);
+            //select = this.selectedClient;
+            //selectedClient = select;
+            //MessageBox.Show("Joueur ajouté");
+        }
 
 
+        public ICommand AjouterClient
+        {
+            get
+            {
+                if (this.ajouterCommand == null)
+                {
+                    this.ajouterCommand = new RelayCommand(() => AjouterCommand(), () => true);
+                }
+                return this.ajouterCommand;
+            }
+        }
+
+
+        public void RefreshListClient()
+        {
+            ObservableCollection<Clients> lalistClient = new ObservableCollection<Clients>(vmDaoClients.SelectAll());
+            listClient.Clear();
+            foreach (Clients c in lalistClient)
+            {
+                listClient.Add(c);
+            }
+        }
     }
 }
