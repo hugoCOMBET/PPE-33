@@ -37,7 +37,7 @@
             <Image x:Name="imageClient" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="44,24,75,24" Height="0" Width="0" Grid.Column="1"/>
             <Button x:Name="updateClient" Content="Mise à jour" Command="{Binding UpdateClient}" Grid.Row="7" Margin="150,2,40,7" Background="#FFF3EE88" Grid.Column="2"/>
             <Button x:Name="AjouterClient" Content="Ajouter" Command="{Binding AjouterClient}" Grid.Row="7" Margin="9,2,0,7" Background="#FFC3EABD" RenderTransformOrigin="0.5,0.5" Grid.Column="1"/>
-            <Button x:Name="SupprimerClient" Content="Supprimer" Command="{Binding SupprimerCommand}" Grid.Row="7" Margin="19,2,171,7" Background="#FFFF8F8F" Grid.Column="2"/>
+            <Button x:Name="SupprimerClient" Content="Supprimer" Command="{Binding SupprimerClient}" Grid.Row="7" Margin="19,2,171,7" Background="#FFFF8F8F" Grid.Column="2"/>
             <Label Content="Numéro Teléphone" Grid.Row="4" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,14,0,6" Background="White" FontSize="14" Width="130" Height="30" Grid.ColumnSpan="2"/>
             <TextBox x:Name="txtbox_prenom" Text="{Binding Prenom}" Grid.Row="1" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,14,10,16" Height="18"/>
             <TextBox x:Name="txtbox_mail" Text="{Binding Email}" Grid.Row="3" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,13,10,17" Height="18"/>

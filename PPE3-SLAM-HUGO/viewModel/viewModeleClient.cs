@@ -15,9 +15,6 @@ namespace PPE3_SLAM_HUGO.viewModel
     {
         private DAOclients vmDaoClients;
         
-
-
-        
         private Clients selectedClient = new Clients();
 
         private ObservableCollection<Clients> listClient;
@@ -221,8 +218,25 @@ namespace PPE3_SLAM_HUGO.viewModel
             }
         }
 
-        
 
+        private void SupprimerCommand()
+        {
+            this.vmDaoClients.Delete(this.selectedClient);
+            int a = listClient.IndexOf(selectedClient);
+            listClient.RemoveAt(a);
+            MessageBox.Show("Client supprimé");
+        }
+        public ICommand SupprimerClient
+        {
+            get
+            {
+                if (this.supprimerCommand == null)
+                {
+                    this.supprimerCommand = new RelayCommand(() => SupprimerCommand(), () => true);
+                }
+                return this.supprimerCommand;
+            }
+        }
         private void UpdateCommand()
         {
             vmDaoClients.Update(selectedClient);
@@ -268,7 +282,6 @@ namespace PPE3_SLAM_HUGO.viewModel
             //selectedClient = select;
             //MessageBox.Show("Joueur ajouté");
         }
-
 
         public ICommand AjouterClient
         {
